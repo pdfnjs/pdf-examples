@@ -14,20 +14,35 @@ A Next.js application demonstrating [pdfn](https://pdfn.dev) integration with Ta
 ```bash
 # Install dependencies
 pnpm install
-
-# Start the development server
-pnpm dev
 ```
 
 ## Usage
 
+### Using pdfn Cloud
+
+Set your API key:
+
+```bash
+export PDFN_API_KEY=pdfn_live_...
+```
+
+Start the Next.js app:
+
+```bash
+pnpm dev
+```
+
+Visit `http://localhost:3000/api/invoice` to download a generated PDF.
+
+### Using Local Dev Server
+
 1. Start the pdfn dev server in a separate terminal:
 
 ```bash
-npx pdfn dev --open
+npx pdfn dev
 ```
 
-2. Start the Next.js app:
+2. Start the Next.js app (no API key needed):
 
 ```bash
 pnpm dev

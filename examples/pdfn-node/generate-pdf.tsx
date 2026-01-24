@@ -1,11 +1,23 @@
 // generate-pdf.tsx
 import React from 'react';
-import { generate } from '@pdfn/react';
+import { pdfn } from '@pdfn/react';
 import { writeFileSync } from 'fs';
 import Invoice from './pdfn-templates/invoice';
 
+const client = pdfn(); // Auto-reads PDFN_API_KEY, falls back to localhost:3456
+
 async function main() {
-  const pdf = await generate(<Invoice number="INV-2025-042" />);
-  writeFileSync('invoice.pdf', pdf);
+  const { data, error } = await client.generate(<Invoice number="INV-2025-042" />);
+
+  if (error) {
+    console.error(`[${error.code}] ${error.message}`);
+    if (error.suggestion) {
+      console.error(`Suggestion: ${error.suggestion}`);
+    }
+    process.exit(1);
+  }
+
+  writeFileSync('invoice.pdf', data.buffer);
+  console.log('Generated invoice.pdf');
 }
 main();

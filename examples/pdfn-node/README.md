@@ -4,7 +4,7 @@ A minimal Node.js setup demonstrating [pdfn](https://pdfn.dev) PDF generation.
 
 ## Features
 
-- Basic `generate()` usage with `pdfn serve`
+- Basic `generate()` usage with pdfn Cloud or local dev server
 - Puppeteer integration with `render()`
 - Invoice template example
 
@@ -17,15 +17,15 @@ npm install
 
 ## Usage
 
-### Using `generate()` (requires pdfn serve)
+### Using pdfn Cloud
 
-1. Start the pdfn server:
+Set your API key:
 
 ```bash
-npx pdfn serve
+export PDFN_API_KEY=pdfn_live_...
 ```
 
-2. Generate the PDF:
+Generate the PDF:
 
 ```bash
 npm run generate
@@ -33,7 +33,21 @@ npm run generate
 
 This creates `invoice.pdf` in the current directory.
 
-### Using Puppeteer (bring your own browser)
+### Using Local Dev Server
+
+1. Start the pdfn dev server:
+
+```bash
+npx pdfn dev
+```
+
+2. Generate the PDF (no API key needed):
+
+```bash
+npm run generate
+```
+
+### Using Puppeteer (self-hosted)
 
 ```bash
 npm run generate:puppeteer

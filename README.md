@@ -8,7 +8,7 @@ Example projects demonstrating [pdfn](https://pdfn.dev) - React-first, Chromium-
 
 Minimal Node.js setup for generating PDFs with pdfn.
 
-- Basic `generate()` usage with `pdfn serve`
+- Basic `generate()` usage with pdfn Cloud or local dev server
 - Puppeteer integration with `render()`
 - Invoice template example
 
