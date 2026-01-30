@@ -1,189 +1,142 @@
-import React from "react";
 import { Document, Page, Thead, PageNumber, TotalPages } from "@pdfn/react";
-
-/**
- * Professional Invoice template using inline styles
- *
- * Demonstrates:
- * - Thead with repeat for multi-page tables
- * - PageNumber and TotalPages in footer
- * - Configurable tax rate
- */
+import { Tailwind } from "@pdfn/tailwind";
 
 interface InvoiceProps {
   number?: string;
   date?: string;
   dueDate?: string;
-  customer?: {
-    name: string;
-    address: string;
-    city: string;
-  };
-  items?: Array<{
-    name: string;
-    description?: string;
-    qty: number;
-    price: number;
-  }>;
+  customer?: { name: string; address: string; city: string };
+  items?: Array<{ name: string; description?: string; qty: number; price: number }>;
   taxRate?: number;
   notes?: string;
-  company?: {
-    name: string;
-    address: string;
-    email: string;
-    phone: string;
-  };
+  company?: { name: string; address: string; email: string; phone: string };
 }
 
-export default function Invoice({
-  number = "INV-2025-001",
-  date = "January 15, 2025",
-  dueDate = "February 14, 2025",
-  customer = {
-    name: "Acme Corporation",
-    address: "456 Enterprise Blvd, Suite 100",
-    city: "Austin, TX 78701",
-  },
-  items = [
+const defaults = {
+  number: "INV-2025-001",
+  date: "January 15, 2025",
+  dueDate: "February 14, 2025",
+  customer: { name: "Acme Corporation", address: "456 Enterprise Blvd, Suite 100", city: "Austin, TX 78701" },
+  items: [
     { name: "Web Development", description: "Frontend development with React", qty: 40, price: 150 },
     { name: "API Integration", description: "REST API setup and configuration", qty: 20, price: 175 },
     { name: "UI/UX Design", description: "User interface design", qty: 15, price: 125 },
   ],
-  taxRate = 0.1,
-  notes = "Payment is due within 30 days. Thank you for your business!",
-  company = {
-    name: "Your Company",
-    address: "123 Business St, San Francisco, CA 94102",
-    email: "hello@yourcompany.com",
-    phone: "+1 (555) 123-4567",
-  },
-}: InvoiceProps) {
+  taxRate: 0.1,
+  notes: "Payment is due within 30 days. Thank you for your business!",
+  company: { name: "Your Company", address: "123 Business St, San Francisco, CA 94102", email: "hello@yourcompany.com", phone: "+1 (555) 123-4567" },
+} satisfies Required<InvoiceProps>;
+
+const fmt = (n: number) => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+export default function Invoice(props: InvoiceProps) {
+  const { number, date, dueDate, customer, items, taxRate, notes, company } = { ...defaults, ...props };
   const subtotal = items.reduce((sum, item) => sum + item.qty * item.price, 0);
   const tax = subtotal * taxRate;
   const total = subtotal + tax;
 
-  const formatCurrency = (amount: number) =>
-    "$" + amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
   return (
     <Document title={`Invoice ${number}`}>
-      <Page
-        size="A4"
-        margin="1in"
-        footer={
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "10px", color: "#6b7280", borderTop: "1px solid #e5e7eb", paddingTop: "12px" }}>
-            <div>
-              {company.name} • {company.email} • {company.phone}
+      <Tailwind>
+        <Page
+          size="A4"
+          margin="1in"
+          footer={
+            <div className="flex justify-between items-center text-[10px] text-gray-500 border-t border-gray-200 pt-3">
+              <div>{company.name} • {company.email} • {company.phone}</div>
+              <div>Page <PageNumber /> of <TotalPages /></div>
             </div>
+          }
+        >
+          <div className="flex justify-between items-start mb-8">
             <div>
-              Page <PageNumber /> of <TotalPages />
+              <div className="text-2xl font-bold text-gray-900">{company.name}</div>
+              <div className="text-[10px] text-gray-500 mt-1">{company.address}</div>
+            </div>
+            <div className="text-right">
+              <div className="text-[30px] font-bold text-gray-900 tracking-tight">INVOICE</div>
+              <div className="text-lg font-semibold text-gray-600 mt-1">{number}</div>
             </div>
           </div>
-        }
-      >
-        {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "32px" }}>
-          <div>
-            <div style={{ fontSize: "24px", fontWeight: "bold", color: "#111827" }}>{company.name}</div>
-            <div style={{ fontSize: "10px", color: "#6b7280", marginTop: "4px" }}>{company.address}</div>
-          </div>
-          <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: "30px", fontWeight: "bold", color: "#111827", letterSpacing: "-0.025em" }}>INVOICE</div>
-            <div style={{ fontSize: "18px", fontWeight: "600", color: "#4b5563", marginTop: "4px" }}>{number}</div>
-          </div>
-        </div>
 
-        {/* Invoice Details & Bill To */}
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "32px" }}>
-          <div>
-            <div style={{ fontSize: "10px", fontWeight: "600", color: "#6b7280", textTransform: "uppercase", marginBottom: "8px" }}>Bill To</div>
-            <div style={{ fontSize: "14px", fontWeight: "600", color: "#111827" }}>{customer.name}</div>
-            <div style={{ fontSize: "14px", color: "#4b5563", marginTop: "2px" }}>{customer.address}</div>
-            <div style={{ fontSize: "14px", color: "#4b5563" }}>{customer.city}</div>
+          <div className="flex justify-between mb-8">
+            <div>
+              <div className="text-[10px] font-semibold text-gray-500 uppercase mb-2">Bill To</div>
+              <div className="text-sm font-semibold text-gray-900">{customer.name}</div>
+              <div className="text-sm text-gray-600 mt-0.5">{customer.address}</div>
+              <div className="text-sm text-gray-600">{customer.city}</div>
+            </div>
+            <div className="text-right">
+              <table className="ml-auto text-sm">
+                <tbody>
+                  <tr>
+                    <td className="text-gray-500 pr-4 py-0.5">Invoice Date:</td>
+                    <td className="text-gray-900 py-0.5">{date}</td>
+                  </tr>
+                  <tr>
+                    <td className="text-gray-500 pr-4 py-0.5">Due Date:</td>
+                    <td className="text-gray-900 py-0.5">{dueDate}</td>
+                  </tr>
+                  <tr>
+                    <td className="text-gray-500 pr-4 py-1.5 font-semibold">Amount Due:</td>
+                    <td className="text-gray-900 py-1.5 font-bold text-lg">{fmt(total)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div style={{ textAlign: "right" }}>
-            <table style={{ marginLeft: "auto", fontSize: "14px" }}>
+
+          <table className="w-full mb-6 border-collapse">
+            <Thead repeat>
+              <tr className="bg-gray-800 text-white">
+                <th className="text-left px-4 py-3 text-[10px] font-semibold uppercase">Description</th>
+                <th className="text-center px-4 py-3 text-[10px] font-semibold uppercase w-16">Qty</th>
+                <th className="text-right px-4 py-3 text-[10px] font-semibold uppercase w-24">Rate</th>
+                <th className="text-right px-4 py-3 text-[10px] font-semibold uppercase w-28">Amount</th>
+              </tr>
+            </Thead>
+            <tbody>
+              {items.map((item, i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  <td className="px-4 py-3 border-b border-gray-100">
+                    <div className="font-medium text-gray-900 text-sm">{item.name}</div>
+                    {item.description && <div className="text-[10px] text-gray-500 mt-0.5">{item.description}</div>}
+                  </td>
+                  <td className="text-center px-4 py-3 text-gray-700 text-sm border-b border-gray-100">{item.qty}</td>
+                  <td className="text-right px-4 py-3 text-gray-700 text-sm border-b border-gray-100">{fmt(item.price)}</td>
+                  <td className="text-right px-4 py-3 font-medium text-gray-900 text-sm border-b border-gray-100">{fmt(item.qty * item.price)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="flex justify-end mb-8">
+            <table className="w-64 text-sm">
               <tbody>
                 <tr>
-                  <td style={{ color: "#6b7280", paddingRight: "16px", paddingTop: "2px", paddingBottom: "2px" }}>Invoice Date:</td>
-                  <td style={{ color: "#111827", paddingTop: "2px", paddingBottom: "2px" }}>{date}</td>
+                  <td className="py-2 text-gray-600">Subtotal</td>
+                  <td className="py-2 text-right text-gray-900">{fmt(subtotal)}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#6b7280", paddingRight: "16px", paddingTop: "2px", paddingBottom: "2px" }}>Due Date:</td>
-                  <td style={{ color: "#111827", paddingTop: "2px", paddingBottom: "2px" }}>{dueDate}</td>
+                  <td className="py-2 text-gray-600">Tax ({(taxRate * 100).toFixed(0)}%)</td>
+                  <td className="py-2 text-right text-gray-900">{fmt(tax)}</td>
                 </tr>
-                <tr>
-                  <td style={{ color: "#6b7280", paddingRight: "16px", paddingTop: "6px", paddingBottom: "6px", fontWeight: "600" }}>Amount Due:</td>
-                  <td style={{ color: "#111827", paddingTop: "6px", paddingBottom: "6px", fontWeight: "bold", fontSize: "18px" }}>{formatCurrency(total)}</td>
+                <tr className="border-t-2 border-gray-800">
+                  <td className="pt-3 pb-2 font-bold text-gray-900 text-base">Total Due</td>
+                  <td className="pt-3 pb-2 text-right font-bold text-gray-900 text-lg">{fmt(total)}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
 
-        {/* Items Table */}
-        <table style={{ width: "100%", marginBottom: "24px", borderCollapse: "collapse" }}>
-          <Thead repeat>
-            <tr style={{ backgroundColor: "#1f2937", color: "white" }}>
-              <th style={{ textAlign: "left", padding: "12px 16px", fontSize: "10px", fontWeight: "600", textTransform: "uppercase" }}>Description</th>
-              <th style={{ textAlign: "center", padding: "12px 16px", fontSize: "10px", fontWeight: "600", textTransform: "uppercase", width: "64px" }}>Qty</th>
-              <th style={{ textAlign: "right", padding: "12px 16px", fontSize: "10px", fontWeight: "600", textTransform: "uppercase", width: "96px" }}>Rate</th>
-              <th style={{ textAlign: "right", padding: "12px 16px", fontSize: "10px", fontWeight: "600", textTransform: "uppercase", width: "112px" }}>Amount</th>
-            </tr>
-          </Thead>
-          <tbody>
-            {items.map((item, i) => (
-              <tr key={i} style={{ backgroundColor: i % 2 === 0 ? "white" : "#f9fafb" }}>
-                <td style={{ padding: "12px 16px", borderBottom: "1px solid #f3f4f6" }}>
-                  <div style={{ fontWeight: "500", color: "#111827", fontSize: "14px" }}>{item.name}</div>
-                  {item.description && (
-                    <div style={{ fontSize: "10px", color: "#6b7280", marginTop: "2px" }}>{item.description}</div>
-                  )}
-                </td>
-                <td style={{ textAlign: "center", padding: "12px 16px", color: "#374151", fontSize: "14px", borderBottom: "1px solid #f3f4f6" }}>
-                  {item.qty}
-                </td>
-                <td style={{ textAlign: "right", padding: "12px 16px", color: "#374151", fontSize: "14px", borderBottom: "1px solid #f3f4f6" }}>
-                  {formatCurrency(item.price)}
-                </td>
-                <td style={{ textAlign: "right", padding: "12px 16px", fontWeight: "500", color: "#111827", fontSize: "14px", borderBottom: "1px solid #f3f4f6" }}>
-                  {formatCurrency(item.qty * item.price)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        {/* Totals */}
-        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "32px" }}>
-          <table style={{ width: "256px", fontSize: "14px" }}>
-            <tbody>
-              <tr>
-                <td style={{ padding: "8px 0", color: "#4b5563" }}>Subtotal</td>
-                <td style={{ padding: "8px 0", textAlign: "right", color: "#111827" }}>{formatCurrency(subtotal)}</td>
-              </tr>
-              <tr>
-                <td style={{ padding: "8px 0", color: "#4b5563" }}>Tax ({(taxRate * 100).toFixed(0)}%)</td>
-                <td style={{ padding: "8px 0", textAlign: "right", color: "#111827" }}>{formatCurrency(tax)}</td>
-              </tr>
-              <tr style={{ borderTop: "2px solid #1f2937" }}>
-                <td style={{ paddingTop: "12px", paddingBottom: "8px", fontWeight: "bold", color: "#111827", fontSize: "16px" }}>Total Due</td>
-                <td style={{ paddingTop: "12px", paddingBottom: "8px", textAlign: "right", fontWeight: "bold", color: "#111827", fontSize: "18px" }}>
-                  {formatCurrency(total)}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        {/* Notes */}
-        {notes && (
-          <div style={{ backgroundColor: "#f9fafb", padding: "16px", borderRadius: "8px" }}>
-            <div style={{ fontSize: "10px", fontWeight: "600", color: "#374151", textTransform: "uppercase", marginBottom: "4px" }}>Notes</div>
-            <div style={{ fontSize: "14px", color: "#4b5563" }}>{notes}</div>
-          </div>
-        )}
-      </Page>
+          {notes && (
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="text-[10px] font-semibold text-gray-700 uppercase mb-1">Notes</div>
+              <div className="text-sm text-gray-600">{notes}</div>
+            </div>
+          )}
+        </Page>
+      </Tailwind>
     </Document>
   );
 }

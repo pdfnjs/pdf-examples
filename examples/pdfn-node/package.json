@@ -14,6 +14,7 @@
   "type": "commonjs",
   "dependencies": {
     "@pdfn/react": "^1.1.0",
+    "@pdfn/tailwind": "^0.2.1",
     "@react-pdf/renderer": "^4.3.2",
     "dotenv": "^17.2.3",
     "puppeteer": "^24.35.0",
