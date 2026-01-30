@@ -330,7 +330,8 @@ export default function Invoice({
           </View>
           {/* Table Body */}
           {items.map((item, i) => (
-            <View key={i} style={[styles.tableRow, i % 2 !== 0 && styles.tableRowAlt]}>
+            <React.Fragment key={i}>
+            <View style={i % 2 !== 0 ? [styles.tableRow, styles.tableRowAlt] : styles.tableRow}>
               <View style={styles.colDescription}>
                 <Text style={styles.itemName}>{item.name}</Text>
                 {item.description && <Text style={styles.itemDescription}>{item.description}</Text>}
@@ -339,6 +340,7 @@ export default function Invoice({
               <Text style={[styles.cellText, styles.colRate]}>{formatCurrency(item.price)}</Text>
               <Text style={[styles.cellTextBold, styles.colAmount]}>{formatCurrency(item.qty * item.price)}</Text>
             </View>
+            </React.Fragment>
           ))}
         </View>
 
