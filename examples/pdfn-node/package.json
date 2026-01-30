@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "generate": "npx tsx generate-pdf.tsx",
-    "generate:puppeteer": "npx tsx generate-puppeteer-pdf.tsx"
+    "generate:puppeteer": "npx tsx generate-puppeteer-pdf.tsx",
+    "generate:react-pdf": "npx tsx generate-react-pdf.tsx"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,8 @@
   "type": "commonjs",
   "dependencies": {
     "@pdfn/react": "^1.1.0",
+    "@react-pdf/renderer": "^4.3.2",
+    "dotenv": "^17.2.3",
     "puppeteer": "^24.35.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"

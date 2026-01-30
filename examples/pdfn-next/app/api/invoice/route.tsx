@@ -4,7 +4,7 @@ import Invoice from '@/pdfn-templates/invoice';
 const client = pdfn(); // Auto-reads PDFN_API_KEY
 
 export async function GET() {
-  const { data, error } = await client.generate(<Invoice number="INV-2025-042" />);
+  const { data, error } = await client.generate({ react: <Invoice number="INV-2025-042" /> });
 
   if (error) {
     return new Response(error.message, { status: 500 });
