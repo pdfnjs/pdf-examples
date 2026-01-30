@@ -4,8 +4,8 @@
   "description": "Node.js example for @pdfn/react",
   "main": "index.js",
   "scripts": {
-    "generate": "npx tsx generate-pdf.tsx",
-    "generate:puppeteer": "npx tsx generate-puppeteer-pdf.tsx",
+    "generate:pdfn": "npx tsx generate-pdfn.tsx",
+    "generate:pdfn-self-host": "npx tsx generate-pdfn-self-host.tsx",
     "generate:react-pdf": "npx tsx generate-react-pdf.tsx"
   },
   "keywords": [],
