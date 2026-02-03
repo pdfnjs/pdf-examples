@@ -1,5 +1,4 @@
 // generate-pdf.tsx
-import React from 'react';
 import { pdfn } from '@pdfn/react';
 import { writeFileSync } from 'fs';
 import { config } from 'dotenv';
@@ -10,7 +9,10 @@ config({ path: '.env.local' });
 const client = pdfn(); // Auto-reads PDFN_API_KEY, falls back to localhost:3456
 
 async function main() {
-  const { data, error } = await client.generate({ react: <Invoice number="INV-2025-042" /> });
+  const { data, error } = await client.generate({
+    react: <Invoice number="INV-2025-042" />,
+    standard: 'PDF/A-2b'
+  });
 
   if (error) {
     console.error(`[${error.code}] ${error.message}`);
