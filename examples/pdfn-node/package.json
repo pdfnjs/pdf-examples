@@ -19,7 +19,8 @@
     "dotenv": "^17.2.3",
     "puppeteer": "^24.35.0",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
