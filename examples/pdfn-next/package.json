@@ -9,9 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@pdfn/next": "^2.0.0",
-    "@pdfn/react": "^1.1.0",
-    "@pdfn/tailwind": "^0.2.1",
+    "@pdfn/next": "^2.0.2",
+    "@pdfn/react": "^1.1.2",
+    "@pdfn/tailwind": "^0.2.3",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"

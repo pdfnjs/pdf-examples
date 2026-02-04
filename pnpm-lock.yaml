@@ -21,14 +21,14 @@ importers:
   examples/pdfn-next:
     dependencies:
       '@pdfn/next':
-        specifier: ^2.0.0
-        version: 2.0.0(@pdfn/react@1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18))(@pdfn/tailwind@0.2.1(react@19.2.3)(tailwindcss@4.1.18))(next@16.1.1(@babel/core@7.28.6)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^2.0.2
+        version: 2.0.2(@pdfn/react@1.1.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18))(@pdfn/tailwind@0.2.3(react@19.2.3)(tailwindcss@4.1.18))(next@16.1.1(@babel/core@7.28.6)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       '@pdfn/react':
-        specifier: ^1.1.0
-        version: 1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.1.2
+        version: 1.1.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       '@pdfn/tailwind':
-        specifier: ^0.2.1
-        version: 0.2.1(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^0.2.3
+        version: 0.2.3(react@19.2.3)(tailwindcss@4.1.18)
       next:
         specifier: 16.1.1
         version: 16.1.1(@babel/core@7.28.6)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -67,11 +67,11 @@ importers:
   examples/pdfn-node:
     dependencies:
       '@pdfn/react':
-        specifier: ^1.1.0
-        version: 1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.1.2
+        version: 1.1.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       '@pdfn/tailwind':
-        specifier: ^0.2.1
-        version: 0.2.1(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^0.2.3
+        version: 0.2.3(react@19.2.3)(tailwindcss@4.1.18)
       '@react-pdf/renderer':
         specifier: ^4.3.2
         version: 4.3.2(react@19.2.3)
@@ -712,15 +712,15 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@pdfn/client@0.1.1':
-    resolution: {integrity: sha512-ip6Zag8mA7oUcKFP1tP4lfP3yk+9sxCH41tr6Wf7fA8GVOCh/pz8aR8xaAeTFamt6UOiCs9tA+IC8CWBFxmBUg==}
+  '@pdfn/client@0.1.3':
+    resolution: {integrity: sha512-i+FIhmU35Uaomea0iIq7HP80DaqeT+AayH4C3Zff5CCc20BExcFLmlFrm38eQ66eJofVX7B0AhpfkQdIyq4w2g==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
-  '@pdfn/core@0.1.1':
-    resolution: {integrity: sha512-vzBJU6IlkOoepVWkFrycVaoJHzI7zbxmXqORVn3sgZq8cxwwyldA0cSu+ZLhVf1dwWazzkitaA0NmpLeG4FbxQ==}
+  '@pdfn/core@0.2.0':
+    resolution: {integrity: sha512-t23fQntPD0PI/QA4HVAb9gupq/qgZJzWFppNVkq6gEo8oii7daM+gFILMIu84nbGivHaoBaxB765zNRmrXU28g==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       tailwindcss: ^4.0.0
@@ -728,12 +728,12 @@ packages:
       tailwindcss:
         optional: true
 
-  '@pdfn/next@2.0.0':
-    resolution: {integrity: sha512-DIHfRduQzmPCOLPx/lWz+jDlwii0NMiY9e850DUqvuEt08wZAl1tQf4u6y1rY7YsNnm9+OAPStTGCD+dHNMw4w==}
+  '@pdfn/next@2.0.2':
+    resolution: {integrity: sha512-0nqYwvW0cQsEH4A2lLUaaa8xBJLV0SuOWK8r7GiQdRGeNMD4f/yfVzbcBSdPZae1LIG9c9r2hJKLI5Gd0Pg6sQ==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
-      '@pdfn/react': 1.1.0
-      '@pdfn/tailwind': 0.2.1
+      '@pdfn/react': 1.1.2
+      '@pdfn/tailwind': 0.2.3
       next: '>=14.0.0'
       tailwindcss: ^4.0.0
     peerDependenciesMeta:
@@ -742,15 +742,15 @@ packages:
       tailwindcss:
         optional: true
 
-  '@pdfn/react@1.1.0':
-    resolution: {integrity: sha512-rYssOrn/OcUT1nK4DL7ijaPQpqWt0nncKX7pEN/KxX68Jf5Of466lZ1yQylL5rsNnXjn5/vRTM8+1nj8ccXnQw==}
+  '@pdfn/react@1.1.2':
+    resolution: {integrity: sha512-vlKza1aH6/fi16tC0RBYq2D0tutIwoPs9OlLFiuyS3SDbkI3W6XDV8nOyil/TMEPd2u+TGUHhVEKoFfoxFzNug==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
-  '@pdfn/tailwind@0.2.1':
-    resolution: {integrity: sha512-IaHGi32dpRj+MdSpnmNwgFKqbKV4nS3dMXf1asW5YfjLYDc+0ypm73dnXCApVBEcBQx1r76uWv6jP3YxKTqNsw==}
+  '@pdfn/tailwind@0.2.3':
+    resolution: {integrity: sha512-+d7o3dsnm3DrdHY9uvfPeAFkiahxiSvucaBLo18gC+TN9gb7Ga7IrMfVo22G3G56McUUMJjppI40Sk/YENNqDQ==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
@@ -3283,48 +3283,48 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@pdfn/client@0.1.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
+  '@pdfn/client@0.1.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
     dependencies:
-      '@pdfn/core': 0.1.1(tailwindcss@4.1.18)
+      '@pdfn/core': 0.2.0(tailwindcss@4.1.18)
       esbuild: 0.27.2
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
     transitivePeerDependencies:
       - tailwindcss
 
-  '@pdfn/core@0.1.1(tailwindcss@4.1.18)':
+  '@pdfn/core@0.2.0(tailwindcss@4.1.18)':
     dependencies:
       fast-glob: 3.3.3
     optionalDependencies:
       tailwindcss: 4.1.18
 
-  '@pdfn/next@2.0.0(@pdfn/react@1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18))(@pdfn/tailwind@0.2.1(react@19.2.3)(tailwindcss@4.1.18))(next@16.1.1(@babel/core@7.28.6)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
+  '@pdfn/next@2.0.2(@pdfn/react@1.1.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18))(@pdfn/tailwind@0.2.3(react@19.2.3)(tailwindcss@4.1.18))(next@16.1.1(@babel/core@7.28.6)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
     dependencies:
-      '@pdfn/client': 0.1.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
-      '@pdfn/core': 0.1.1(tailwindcss@4.1.18)
-      '@pdfn/react': 1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+      '@pdfn/client': 0.1.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+      '@pdfn/core': 0.2.0(tailwindcss@4.1.18)
+      '@pdfn/react': 1.1.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       esbuild: 0.27.2
       fast-glob: 3.3.3
       next: 16.1.1(@babel/core@7.28.6)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     optionalDependencies:
-      '@pdfn/tailwind': 0.2.1(react@19.2.3)(tailwindcss@4.1.18)
+      '@pdfn/tailwind': 0.2.3(react@19.2.3)(tailwindcss@4.1.18)
       tailwindcss: 4.1.18
     transitivePeerDependencies:
       - react
       - react-dom
 
-  '@pdfn/react@1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
+  '@pdfn/react@1.1.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
     dependencies:
-      '@pdfn/client': 0.1.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
-      '@pdfn/core': 0.1.1(tailwindcss@4.1.18)
+      '@pdfn/client': 0.1.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+      '@pdfn/core': 0.2.0(tailwindcss@4.1.18)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
     transitivePeerDependencies:
       - tailwindcss
 
-  '@pdfn/tailwind@0.2.1(react@19.2.3)(tailwindcss@4.1.18)':
+  '@pdfn/tailwind@0.2.3(react@19.2.3)(tailwindcss@4.1.18)':
     dependencies:
-      '@pdfn/core': 0.1.1(tailwindcss@4.1.18)
+      '@pdfn/core': 0.2.0(tailwindcss@4.1.18)
       react: 19.2.3
       tailwindcss: 4.1.18
 
